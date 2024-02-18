@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {ItemComponent} from "./item/item.component";
 import {ItemCartComponent} from "./item-cart/item-cart.component";
+import {DiscountService} from "./service/discount.service";
 
 @Component({
   selector: 'app-item-page',
@@ -18,5 +19,10 @@ import {ItemCartComponent} from "./item-cart/item-cart.component";
 export class ItemPageComponent {
 
   openCart: boolean = true;
+  discountService = inject(DiscountService);
+
+  test(){
+    this.discountService.discountCampaigns();
+  }
 
 }

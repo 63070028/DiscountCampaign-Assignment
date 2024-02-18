@@ -3,3 +3,6 @@ spring:
     name: discount-service
 server:
   port: 8001
+
+allowed:
+  origin: http://localhost:4200
