@@ -33,7 +33,7 @@ public class DiscountService {
         double totalPrice = amount;
 
         DiscountCampaigns discountCampaigns = request.getDiscountCampaigns();
-        validateDiscountCampaigns(discountCampaigns, totalPrice);
+        validateDiscountCampaigns(discountCampaigns, amount);
 
 
         if (Objects.nonNull(discountCampaigns.getCoupon().getFixedAmount())) {
@@ -86,7 +86,11 @@ public class DiscountService {
                 .build();
     }
 
-    private void validateDiscountCampaigns(DiscountCampaigns discountCampaigns, double totalPrice) throws BaseException {
+    private void validateDiscountCampaigns(DiscountCampaigns discountCampaigns, double amount) throws BaseException {
+
+        if (amount <= 0) {
+            throw DiscountException.amountIsZero();
+        }
 
         if (Objects.isNull(discountCampaigns)) {
             throw DiscountException.discountCampaignsNull();
@@ -114,7 +118,7 @@ public class DiscountService {
 
         if (Objects.nonNull(discountCampaigns.getOnTop().getPointDiscount())) {
             int point = discountCampaigns.getOnTop().getPointDiscount().getPoint();
-            int maxPoint = DiscountCalculate.maxPoint(totalPrice);
+            int maxPoint = DiscountCalculate.maxPoint(amount);
             if (point > maxPoint) {
                 throw DiscountException.pointGreaterThanPercentageAmount(maxPoint);
             }
@@ -122,11 +126,22 @@ public class DiscountService {
 
         if (Objects.nonNull(discountCampaigns.getOnTop().getPercentageCategory())) {
             List<String> categoryList = discountCampaigns.getOnTop().getPercentageCategory().getCategory();
+            if (categoryList.size() == 0) {
+                throw DiscountException.categoryIsEmpty();
+            }
+
             Set<String> setCategory = new HashSet<>(categoryList);
             if (setCategory.size() != categoryList.size()) {
                 throw DiscountException.categoryDuplicate();
             }
         }
+
+        if (Objects.nonNull(discountCampaigns.getSeasonal().getEveryAmount())) {
+            if (discountCampaigns.getSeasonal().getEveryAmount().getEvery() == 0) {
+                throw DiscountException.everyIsZero();
+            }
+        }
+
 
     }
 

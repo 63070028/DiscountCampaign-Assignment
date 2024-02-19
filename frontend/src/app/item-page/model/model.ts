@@ -1,3 +1,5 @@
+import {stat} from "fs";
+
 export interface Product{
   name:string;
   category:string;
@@ -88,4 +90,10 @@ export enum CategoryCampaigns{
   COUPON = "COUPON",
   ONTOP = "ONTOP",
   SEASONAL = "SEASONAL"
+}
+
+export interface errorResponse{
+  timestamp:string;
+  status:string;
+  error:string;
 }

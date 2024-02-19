@@ -42,8 +42,20 @@ public class DiscountException extends BaseException {
         return new DiscountException("discountCampaigns.seasonal.pointDiscount.point greater than max point percentage amount " + maxPoint);
     }
 
+    public static DiscountException categoryIsEmpty() {
+        return new DiscountException("discountCampaigns.onTop.percentageCategory.category is empty");
+    }
+
     public static DiscountException categoryDuplicate() {
         return new DiscountException("discountCampaigns.onTop.percentageCategory.category is duplicate");
+    }
+
+    public static DiscountException amountIsZero() {
+        return new DiscountException("cart item amount is 0");
+    }
+
+    public static DiscountException everyIsZero() {
+        return new DiscountException("discountCampaigns.seasonal.everyAmount.every is 0");
     }
 
 }
