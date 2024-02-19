@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.Formatter;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class DiscountService {
@@ -119,6 +117,14 @@ public class DiscountService {
             int maxPoint = DiscountCalculate.maxPoint(totalPrice);
             if (point > maxPoint) {
                 throw DiscountException.pointGreaterThanPercentageAmount(maxPoint);
+            }
+        }
+
+        if (Objects.nonNull(discountCampaigns.getOnTop().getPercentageCategory())) {
+            List<String> categoryList = discountCampaigns.getOnTop().getPercentageCategory().getCategory();
+            Set<String> setCategory = new HashSet<>(categoryList);
+            if (setCategory.size() != categoryList.size()) {
+                throw DiscountException.categoryDuplicate();
             }
         }
 

@@ -1,3 +1,9 @@
+export interface Product{
+  name:string;
+  category:string;
+  price:number;
+}
+
 export interface Item{
   name:string;
   category:string;
@@ -6,9 +12,9 @@ export interface Item{
 }
 
 export interface DiscountCampaigns{
-  coupon:CouponCampaigns | null;
-  onTop:OnTopCampaigns | null;
-  seasonal:SeasonalCampaigns | null;
+  coupon:CouponCampaigns;
+  onTop:OnTopCampaigns;
+  seasonal:SeasonalCampaigns;
 }
 
 export interface CouponCampaigns{
@@ -72,9 +78,9 @@ export interface DiscountResponse{
 }
 
 export interface DiscountDetail{
-  amount:number;
-  useCampaigns:DiscountCampaigns;
-  totalPrice:number;
+  amount:String| null;
+  useDiscountCampaign:DiscountCampaigns;
+  totalPrice:String | null;
 }
 
 

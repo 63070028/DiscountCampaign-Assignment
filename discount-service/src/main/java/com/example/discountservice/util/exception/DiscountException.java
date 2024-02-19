@@ -42,4 +42,8 @@ public class DiscountException extends BaseException {
         return new DiscountException("discountCampaigns.seasonal.pointDiscount.point greater than max point percentage amount " + maxPoint);
     }
 
+    public static DiscountException categoryDuplicate() {
+        return new DiscountException("discountCampaigns.onTop.percentageCategory.category is duplicate");
+    }
+
 }
