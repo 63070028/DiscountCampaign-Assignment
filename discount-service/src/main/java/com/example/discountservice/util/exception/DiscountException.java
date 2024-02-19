@@ -58,4 +58,27 @@ public class DiscountException extends BaseException {
         return new DiscountException("discountCampaigns.seasonal.everyAmount.every is 0");
     }
 
+//    public static DiscountException couponFixedAmountIsNotInt() {
+//        return new DiscountException("discountCampaigns.coupon.fixedAmount.amount is not int");
+//    }
+//
+//    public static DiscountException couponPercentageDiscountIsNotInt() {
+//        return new DiscountException("discountCampaigns.coupon.percentageDiscount.percentage is not int");
+//    }
+//
+//    public static DiscountException onTopPercentageCategoryIsNotInt() {
+//        return new DiscountException("discountCampaigns.ontop.percentageCategory.percentage is not int");
+//    }
+//
+//    public static DiscountException onTopPointDiscountIsNotInt() {
+//        return new DiscountException("discountCampaigns.ontop.pointDiscount.point is not int");
+//    }
+//
+//    public static DiscountException seasonalEveryAmountEveryIsNotInt() {
+//        return new DiscountException("discountCampaigns.seasonal.everyAmount.every is not int");
+//    }
+//
+//    public static DiscountException seasonalEveryAmountAmountDiscountIsNotInt() {
+//        return new DiscountException("discountCampaigns.seasonal.everyAmount.amount is not int");
+//    }
 }
